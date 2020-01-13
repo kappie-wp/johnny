@@ -15,10 +15,10 @@ import (
 func main() {
 	args := os.Args[1:]
 	if len(args) != 2 {
-		log.Println("Needs two arguments argument - usage: go run johnny.go /path/to/src .go")
+		log.Println("Needs two program arguments - usage: go run johnny.go /path/to/src .go")
 		return
 	}
-	
+
 	start := args[0]
 	ext := args[1]
 	count := 0
