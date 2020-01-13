@@ -8,16 +8,19 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+
+	"github.com/go-echarts/go-echarts"
 )
 
 func main() {
 	args := os.Args[1:]
-	if len(args) != 1 {
-		fmt.Println(args)
-		log.Println("Need a single path argument")
+	if len(args) != 2 {
+		log.Println("Needs two arguments argument - usage: go run johnny.go /path/to/src .go")
 		return
 	}
+	
 	start := args[0]
+	ext := args[1]
 	count := 0
 
 	err := filepath.Walk(start,
@@ -25,8 +28,8 @@ func main() {
 			if err != nil {
 				return err
 			}
-			
-			if !info.IsDir() && strings.HasSuffix(path, ".go") {
+
+			if !info.IsDir() && strings.HasSuffix(path, ext) {
 				todos, err := findTodos(path)
 				if err != nil {
 					fmt.Println("File reading error", err)
@@ -71,4 +74,3 @@ func findTodos(path string) ([]string, error) {
 
 	return todos, s.Err()
 }
-
