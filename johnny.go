@@ -11,10 +11,6 @@ import (
 )
 
 func main() {
-	// Walk the path, check for .go files, read the file line by line
-	// If TODO is found and matched then print comment up to one complete line
-	// Perhaps cater for multiline comments
-
 	args := os.Args[1:]
 	if len(args) != 1 {
 		fmt.Println(args)
